@@ -1,0 +1,66 @@
+# git
+1. 设置用户名（替换为你的名称，如 GitHub 用户名）
+git config --global user.name "Your Name"
+
+2. 设置邮箱（替换为你的邮箱，建议与 GitHub/GitLab 绑定邮箱一致）
+git config --global user.email "your.email@example.com"
+
+3. 查看所有全局配置
+git config --global --list
+
+
+
+# GitHub
+1. 下载安装watt toolkit 用来加速
+2. 汉化插件>>https://github.com/maboloshi/github-chinese?tab=readme-ov-file
+3. 高级搜索地址>>https://github.com/search/advanced
+
+
+
+
+# git连接GitHub
+1. 先测试基础连接
+在 Git Bash 中执行以下命令，确认是否是 GitHub 服务器或网络问题：
+	bash>>ping github.com
+2.改网关
+	阿里公共 DNS：223.5.5.5
+	腾讯 DNSPod：119.29.29.29
+3.刷新网关缓存
+	cmd管理员>>>ipconfig /flushdns 
+4.改用 443 端口（推荐）
+	22 端口可能被防火墙或网络服务商封锁，而 443 端口（HTTPS 常用）通常开放。可以配置 SSH 通过 443 端口连接 GitHub：
+	创建 / 编辑 SSH 配置文件：
+	bash>>>nano ~/.ssh/config
+		添加以下内容（直接复制粘贴）：
+		plaintext
+			Host github.com
+  		    	     Hostname ssh.github.com
+  		     	     Port 443
+			     保存退出：按 Ctrl+O 保存，Ctrl+X 退出编辑器。
+
+5. 再次测试连接
+	执行测试命令，确认是否成功：
+	bash>>>ssh -T git@github.com
+		首次连接会提示 Are you sure you want to continue connecting?，输入 yes 回车。
+		成功会显示：Hi 你的用户名! You've successfully authenticated...
+6. GitHub上现在默认的是以main作为默认分支>>那就需要把git的默认分支也改成main
+	# 语法：git branch -m 旧分支名 新分支名
+	bash>>>git branch -m master main
+
+
+
+
+
+# SourceTree
+1. 创建快捷方式：
+	> 桌面右键 > 新建快捷方式
+	> 填入路径 ：  C:\Users\%username%\AppData\Local\SourceTree\SourceTree.exe
+	> 确认
+	桌面就出现 SourceTree 图标
+2.关闭一直下载Mercurial
+	> 路径 ：C:\Users\TC\AppData\Local\Atlassian\SourceTree.exe_随机字符串_版本号\user.config
+	> 记事本打开
+	>  <setting name="EnableHgSupport" serializeAs="String">
+                		<value>False</value>
+	>改成上面那样就行了
+3. 用其克隆时,需要保证选中的文件夹为空,且为英文名

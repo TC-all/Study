@@ -8,9 +8,7 @@ git config --global user.email "your.email@example.com"
 3. 查看所有全局配置
 git config --global --list
 
-4. 生成安全密钥
-	bash>>ssh-keygen -t ed25519 -C "your_email@example.com"
-	一路回车
+
 	
 
 
@@ -23,25 +21,28 @@ git config --global --list
 
 
 # git连接GitHub
-1. 先测试基础连接
+1. Git生成安全密钥
+	bash>>ssh-keygen -t ed25519 -C "your_email@example.com"
+	一路回车
+	bash>>cat ~/.ssh/id_ed25519.pub
+	复制内容
+	GitHub>>头像>>设置>>SHH**>>新增SHH
+2. 先测试基础连接
 在 Git Bash 中执行以下命令，确认是否是 GitHub 服务器或网络问题：
 	bash>>ping github.com
-2.改网关
+3.改网关(开了加速可以不用设置）
 	阿里公共 DNS：223.5.5.5
 	腾讯 DNSPod：119.29.29.29
-3.刷新网关缓存
+4.刷新网关缓存(开了加速可以不用设置）
 	cmd管理员>>>ipconfig /flushdns 
-4.改用 443 端口（推荐）
+5.改用 443 端口（推荐）
 	在此自前要生成安全密钥
 	22 端口可能被防火墙或网络服务商封锁，而 443 端口（HTTPS 常用）通常开放。可以配置 SSH 通过 443 端口连接 GitHub：
 	创建 / 编辑 SSH 配置文件：
-	bash>>>nano ~/.ssh/config
-		添加以下内容（直接复制粘贴）：
-		plaintext
-			Host github.com
-  		    	     Hostname ssh.github.com
-  		     	     Port 443
-			     保存退出：按 Ctrl+O 保存，Ctrl+X 退出编辑器。
+	找到文件：C:\Users\ZGN\.ssh\config，复制粘贴下面的话，格式不能错
+Host github.com
+    Hostname ssh.github.com
+    Port 443
 
 5. 再次测试连接
 	执行测试命令，确认是否成功：
@@ -63,6 +64,7 @@ git config --global --list
 	> 确认
 	桌面就出现 SourceTree 图标
 2.关闭一直下载Mercurial
+	> 在安装是直接取消勾选Mercurial工具即可不用下面操作
 	> 路径 ：C:\Users\TC\AppData\Local\Atlassian\SourceTree.exe_随机字符串_版本号\user.config
 	> 记事本打开
 	>  <setting name="EnableHgSupport" serializeAs="String">
@@ -70,3 +72,4 @@ git config --global --list
 	>改成上面那样就行了
 
 3. 用其克隆时,需要保证选中的文件夹为空,且为英文名
+

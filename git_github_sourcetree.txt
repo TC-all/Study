@@ -8,6 +8,10 @@ git config --global user.email "your.email@example.com"
 3. 查看所有全局配置
 git config --global --list
 
+4. 生成安全密钥
+	bash>>ssh-keygen -t ed25519 -C "your_email@example.com"
+	一路回车
+	
 
 
 # GitHub
@@ -28,6 +32,7 @@ git config --global --list
 3.刷新网关缓存
 	cmd管理员>>>ipconfig /flushdns 
 4.改用 443 端口（推荐）
+	在此自前要生成安全密钥
 	22 端口可能被防火墙或网络服务商封锁，而 443 端口（HTTPS 常用）通常开放。可以配置 SSH 通过 443 端口连接 GitHub：
 	创建 / 编辑 SSH 配置文件：
 	bash>>>nano ~/.ssh/config
@@ -63,4 +68,5 @@ git config --global --list
 	>  <setting name="EnableHgSupport" serializeAs="String">
                 		<value>False</value>
 	>改成上面那样就行了
+
 3. 用其克隆时,需要保证选中的文件夹为空,且为英文名
